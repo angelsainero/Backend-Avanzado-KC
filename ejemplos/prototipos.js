@@ -29,3 +29,20 @@ const smith = new Agente('Smith');
 
 smith.saluda();
 
+// Herencia múltiple -------------------------------------
+
+// Mixin
+function Superheroe() {
+  this.vuela = function() { console.log(this.nombre, 'vuela')};
+}
+
+// copiar todas las propidades de los Superheroes al prototipo del Agente
+const supeheroe = new Superheroe();
+console.log(supeheroe);
+Object.assign(Agente.prototype, supeheroe);
+
+smith.vuela();
+
+console.log(smith);
+console.log(Agente.prototype);
+console.log(Persona.prototype);
