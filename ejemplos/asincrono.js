@@ -8,7 +8,7 @@ function escribeTras2Segundos(texto, callback) {
 }
 
 function serie(n, fn, callback) {
-  if (n == 0) {
+  if (n === 0) {
     // termino el bucle
     callback();
     return;
