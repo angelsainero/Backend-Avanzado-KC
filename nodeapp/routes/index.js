@@ -19,4 +19,27 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
+router.get('/parametro_en_ruta/:numero', (req, res, next) => {
+  console.log(req.params);
+  const numero = req.params.numero;
+
+  res.send('me has pedido el numero ' + numero);
+});
+
+router.get('/parametro_opcional/:numero?', (req, res, next) => {
+  console.log(req.params);
+  const numero = req.params.numero;
+
+  res.send('(opcional) me has pedido el numero ' + numero);
+});
+
+router.get('/producto/:nombre/talla/:talla([0-9]+)/color/:color', (req, res, next) => {
+  const nombre = req.params.nombre;
+  const talla = req.params.talla;
+  const color = req.params.color;
+
+  res.send(`Me pedíste ${nombre} ${talla} ${color}`);
+
+})
+
 module.exports = router;
