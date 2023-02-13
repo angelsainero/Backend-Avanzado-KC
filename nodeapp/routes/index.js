@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+const {query, validationResult} = require('express-validator');
+
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
@@ -46,7 +49,13 @@ router.get('/producto/:nombre/talla/:talla([0-9]+)/color/:color', (req, res, nex
 })
 
 // GET /parametro_query_string?talla=35&color=rojo
-router.get('/parametro_query_string', (req, res, next) => {
+router.get('/parametro_query_string', [ // validaciones:
+  query('talla').isNumeric().withMessage('debe tener un valor numérico'),
+  query('color').custom(valor => {
+    return valor === 'rojo';
+  }).withMessage('debe ser "rojo"')
+], (req, res, next) => {
+  validationResult(req).throw();
   const talla = req.query.talla;
   const color = req.query.color;
 
