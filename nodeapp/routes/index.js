@@ -53,4 +53,14 @@ router.get('/parametro_query_string', (req, res, next) => {
   res.send(`Me has pedido talla ${talla} y color ${color}`);
 })
 
+// POST /enelbody
+router.post('/enelbody', (req, res, next) => {
+  const altura = req.body.altura;
+  const peso = req.body.peso;
+
+  console.log('BODY recibido:', req.body);
+
+  res.send(`petición POST recibida con altura ${altura} y peso ${peso}`);
+})
+
 module.exports = router;
