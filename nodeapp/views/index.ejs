@@ -22,5 +22,11 @@
 
     <p>Segundo actual: <%= segundoActual %></p>
 
+    <h2>Lista de agentes</h2>
+    <% agentes.forEach(agente => { %>
+      <p>Agente <%= agente.name %> tiene <%= agente.age %> años</p>
+    <% }) %>
+
+
   </body>
 </html>

@@ -2,24 +2,34 @@ var express = require('express');
 var router = express.Router();
 
 const {query, validationResult} = require('express-validator');
+const Agente = require('../models/Agente');
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', async function(req, res, next) {
 
-  res.locals.nombre = '<script>alert("inyección de código")</script>';
+  try {
 
-  res.locals.usuarios = [
-    { nombre: 'Smith', edad: 34 },
-    { nombre: 'Jones', edad: 23 }
-  ];
+    res.locals.nombre = '<script>alert("inyección de código")</script>';
 
-  const ahora = new Date();
-  res.locals.paridad = (ahora.getSeconds() % 2) === 0;
-  res.locals.segundoActual = ahora.getSeconds();
+    res.locals.usuarios = [
+      { nombre: 'Smith', edad: 34 },
+      { nombre: 'Jones', edad: 23 }
+    ];
 
-  // res.render('index', { title: 'NodeApp' });
-  res.render('index');
+    const agentes = await Agente.find();
+    res.locals.agentes = agentes;
+
+    const ahora = new Date();
+    res.locals.paridad = (ahora.getSeconds() % 2) === 0;
+    res.locals.segundoActual = ahora.getSeconds();
+
+    // res.render('index', { title: 'NodeApp' });
+    res.render('index');
+
+  } catch (err) {
+    next(err);
+  }
 });
 
 // GET /parametro_en_ruta/68
@@ -70,6 +80,6 @@ router.post('/enelbody', (req, res, next) => {
   console.log('BODY recibido:', req.body);
 
   res.send(`petición POST recibida con altura ${altura} y peso ${peso}`);
-})
+});
 
 module.exports = router;
