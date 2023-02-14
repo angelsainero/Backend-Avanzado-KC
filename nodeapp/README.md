@@ -19,3 +19,11 @@ Application created with:
 ```sh
 npx express-generator nodeapp --ejs
 ```
+
+## Start a MongoDB Server in Macos or Linux
+
+In the console go to MongoDB folder and:
+
+```sh
+./bin/mongod --dbpath ./data
+```
