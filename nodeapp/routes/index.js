@@ -7,7 +7,6 @@ const Agente = require('../models/Agente');
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
-
   try {
 
     res.locals.nombre = '<script>alert("inyección de código")</script>';
