@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const agenteSchema = mongoose.Schema({
   name: String,
   age: Number
+}, {
+  // collection: 'agentes'
 });
 
 // crear el modelo de Agente
