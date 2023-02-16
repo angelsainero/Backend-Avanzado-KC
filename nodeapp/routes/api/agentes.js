@@ -15,6 +15,8 @@ router.get('/', async (req, res, next) => {
     // paginación
     const skip = req.query.skip;
     const limit = req.query.limit;
+    // ordenar
+    const sort = req.query.sort;
 
     const filtro = {};
 
@@ -26,7 +28,7 @@ router.get('/', async (req, res, next) => {
       filtro.age = filterByAge;
     }
 
-    const agentes = await Agente.lista(filtro, skip, limit);
+    const agentes = await Agente.lista(filtro, skip, limit, sort);
 
     res.json({ results: agentes });
 
