@@ -10,6 +10,7 @@ module.exports = (req, res, next) => {
   if (!user || user.name !== 'admin' || user.pass !== '1234') {
     res.set('WWW-Authenticate', 'Basic realm=Authorization required');
     res.sendStatus(401);
+    return;
   }
 
   next();

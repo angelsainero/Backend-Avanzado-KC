@@ -91,7 +91,7 @@ router.post('/', async (req, res, next) => {
 
     const agenteData = req.body;
 
-    // creamos una instancia de Agente
+    // creamos una instancia de Agente en memoria
     const agente = new Agente(agenteData);
 
     // la persistimos en la BD

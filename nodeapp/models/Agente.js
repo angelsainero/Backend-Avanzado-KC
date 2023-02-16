@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const agenteSchema = mongoose.Schema({
   name: String,
   age: { type: Number, min: 18, max: 90 },
-  email: String
 }, {
   // collection: 'agentes'
 });
