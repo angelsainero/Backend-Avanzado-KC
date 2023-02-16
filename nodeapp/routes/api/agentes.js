@@ -53,6 +53,10 @@ router.get('/:id', async (req, res, next) => {
 
     const agente = await Agente.findById(id);
 
+    if (agente) {
+      agente.saluda();
+    }
+
     res.json({ result: agente });
 
   } catch (error) {

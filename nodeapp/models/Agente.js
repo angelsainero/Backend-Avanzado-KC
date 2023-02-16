@@ -22,6 +22,10 @@ agenteSchema.statics.lista = function(filtro, skip, limit, sort, fields) {
   return query.exec();
 }
 
+agenteSchema.methods.saluda = function() {
+  console.log('Hola, soy el agente', this.name);
+}
+
 // crear el modelo de Agente
 const Agente = mongoose.model('Agente', agenteSchema);
 
