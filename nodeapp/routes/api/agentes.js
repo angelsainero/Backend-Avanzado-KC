@@ -2,12 +2,27 @@ const express = require('express');
 const router = express.Router();
 const Agente = require('../../models/Agente');
 
+// CRUD: create, read, update, delete
+
 // GET /api/agentes
 // Devuelve una lista de agentes
 router.get('/', async (req, res, next) => {
   try {
 
-    const agentes = await Agente.find();
+    const filterByName = req.query.name;
+    const filterByAge = req.query.age;
+
+    const filtro = {};
+
+    if (filterByName) {
+      filtro.name = filterByName;
+    }
+
+    if (filterByAge) {
+      filtro.age = filterByAge;
+    }
+
+    const agentes = await Agente.lista(filtro);
 
     res.json({ results: agentes });
 
