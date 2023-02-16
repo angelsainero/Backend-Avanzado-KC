@@ -33,4 +33,23 @@ router.get('/:id', async (req, res, next) => {
 
 });
 
+// PUT /api/agentes/:(id)  (body)
+// Actualizar un agente
+router.put('/:id', async (req, res, next) => {
+  try {
+
+    const id = req.params.id;
+    const data = req.body;
+
+    const agenteActualizado = await Agente.findByIdAndUpdate(id, data, {
+      new: true // esto hace que nos devuelva el documento actualizado
+    });
+
+    res.json({ result: agenteActualizado });
+
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
