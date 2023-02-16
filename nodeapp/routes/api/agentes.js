@@ -9,8 +9,12 @@ const Agente = require('../../models/Agente');
 router.get('/', async (req, res, next) => {
   try {
 
+    // filtros
     const filterByName = req.query.name;
     const filterByAge = req.query.age;
+    // paginación
+    const skip = req.query.skip;
+    const limit = req.query.limit;
 
     const filtro = {};
 
@@ -22,7 +26,7 @@ router.get('/', async (req, res, next) => {
       filtro.age = filterByAge;
     }
 
-    const agentes = await Agente.lista(filtro);
+    const agentes = await Agente.lista(filtro, skip, limit);
 
     res.json({ results: agentes });
 

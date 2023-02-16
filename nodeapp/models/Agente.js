@@ -13,9 +13,11 @@ const agenteSchema = mongoose.Schema({
 // - Agente.createWithColor('red')  --> método estático
 // - agente.sendEmail({ subject: 'asdsa' }) --> método de instancia (no usar arrow functions)
 
-agenteSchema.statics.lista = function(filtro) {
+agenteSchema.statics.lista = function(filtro, skip, limit) {
   const query = Agente.find(filtro);
-  // ...
+  query.skip(skip);
+  query.limit(limit);
+
   return query.exec();
 }
 
