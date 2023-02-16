@@ -72,4 +72,21 @@ router.post('/', async (req, res, next) => {
   }
 });
 
+// DELETE /api/agentes/:(id)
+// Elimina un agente
+router.delete('/:id', async (req, res, next) => {
+  try {
+
+    const id = req.params.id;
+
+    await Agente.deleteOne({ _id: id });
+
+    res.json();
+
+  } catch (error) {
+    next(error);
+  }
+});
+
+
 module.exports = router;
