@@ -6,14 +6,14 @@
   </head>
   <body>
     <% include cabecera.ejs %>
-    <p><%= nombre %> Welcome to <%= title %></p>
+    <p><%= nombre %> <%= __('Welcome to') %> <%= title %></p>
 
-    <h2>Bucles</h2>
+    <h2><%= __('Loops') %></h2>
     <% usuarios.forEach(usuario => { %>
       <p>Usuario <%= usuario.nombre %> tiene <%= usuario.edad %> años</p>
     <% }) %>
 
-    <h2>Condicionales</h2>
+    <h2><%= __('Conditionals') %></h2>
     <% if (paridad) { %>
       <p>El segundo actual es par</p>
     <% } else { %>
@@ -22,7 +22,7 @@
 
     <p>Segundo actual: <%= segundoActual %></p>
 
-    <h2>Lista de agentes</h2>
+    <h2><%= __('Agent list') %></h2>
     <% agentes.forEach(agente => { %>
       <p>Agente <%= agente.name %> tiene <%= agente.age %> años</p>
     <% }) %>
