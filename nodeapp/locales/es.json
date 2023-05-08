@@ -8,5 +8,6 @@
 	"Mouse": {
 		"one": "Ratón",
 		"other": "Ratones"
-	}
+	},
+	"Text": "Texto"
 }

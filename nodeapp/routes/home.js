@@ -9,7 +9,8 @@ const Agente = require('../models/Agente');
 router.get('/', async function(req, res, next) {
   try {
 
-    res.locals.nombre = '<script>alert("inyección de código")</script>';
+    res.locals.texto = res.__('Text');
+    res.locals.nombre = `<script>alert("inyección de código")</script>`;
 
     res.locals.usuarios = [
       { nombre: 'Smith', edad: 34 },
