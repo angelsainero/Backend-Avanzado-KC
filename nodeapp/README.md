@@ -18,6 +18,12 @@ Start in development mode:
 npm run dev
 ```
 
+Start in cluster mode:
+
+```sh
+npm run cluster
+```
+
 ## General info
 
 Application created with:
