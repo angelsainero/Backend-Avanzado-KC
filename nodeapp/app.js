@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const basicAuthMiddleware = require('./lib/basicAuthMiddleware');
 const i18n = require('./lib/i18nConfigure');
+const LoginController = require('./controllers/loginController');
 
 require('./lib/connectMongoose');
 
@@ -30,6 +31,8 @@ app.use('/api/agentes', basicAuthMiddleware, require('./routes/api/agentes'));
 
 app.use(i18n.init);
 
+const loginController = new LoginController();
+
 /**
  * Rutas del Website
  */
@@ -37,6 +40,7 @@ app.use('/',      require('./routes/home'));
 app.use('/users', require('./routes/users'));
 app.use('/features', require('./routes/features'));
 app.use('/change-locale', require('./routes/change-locale'));
+app.get('/login', loginController.index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
