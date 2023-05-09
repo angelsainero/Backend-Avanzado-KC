@@ -17,7 +17,6 @@ app.set('x-powered-by', false);
 
 app.locals.title = 'NodeApp';
 
-app.use(i18n.init);
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -29,12 +28,15 @@ app.use(express.static(path.join(__dirname, 'public')));
  */
 app.use('/api/agentes', basicAuthMiddleware, require('./routes/api/agentes'));
 
+app.use(i18n.init);
+
 /**
  * Rutas del Website
  */
 app.use('/',      require('./routes/home'));
 app.use('/users', require('./routes/users'));
 app.use('/features', require('./routes/features'));
+app.use('/change-locale', require('./routes/change-locale'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
