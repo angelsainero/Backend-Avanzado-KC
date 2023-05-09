@@ -41,6 +41,7 @@ app.use('/users', require('./routes/users'));
 app.use('/features', require('./routes/features'));
 app.use('/change-locale', require('./routes/change-locale'));
 app.get('/login', loginController.index);
+app.post('/login', loginController.post);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
