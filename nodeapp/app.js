@@ -7,6 +7,7 @@ const basicAuthMiddleware = require('./lib/basicAuthMiddleware');
 const i18n = require('./lib/i18nConfigure');
 const LoginController = require('./controllers/LoginController');
 const PrivadoController = require('./controllers/PrivadoController');
+const session = require('express-session');
 
 require('./lib/connectMongoose');
 
@@ -31,6 +32,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/agentes', basicAuthMiddleware, require('./routes/api/agentes'));
 
 app.use(i18n.init);
+app.use(session({
+  name: 'nodeapp-session',
+  secret: 'as78dbas8d7bva6sd6vas',
+  saveUninitialized: true,
+  resave: false,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 2 // expira a los 2 días de inactividad
+  }
+}))
 
 const loginController = new LoginController();
 const privadoController = new PrivadoController();
