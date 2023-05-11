@@ -37,6 +37,9 @@ const loginController = new LoginController();
 app.use('/api/agentes', jwtAuthMiddleware, require('./routes/api/agentes'));
 app.post('/api/login', loginController.postAPI)
 
+/**
+ * Rutas del Website
+ */
 app.use(i18n.init);
 app.use(session({
   name: 'nodeapp-session',
@@ -53,9 +56,6 @@ app.use(session({
 
 const privadoController = new PrivadoController();
 
-/**
- * Rutas del Website
- */
 // hacemos que el objeto de sesión esté disponible al renderizar vistas
 app.use((req, res, next) => {
   res.locals.session = req.session;
