@@ -53,12 +53,18 @@ const privadoController = new PrivadoController();
 /**
  * Rutas del Website
  */
+// hacemos que el objeto de sesión esté disponible al renderizar vistas
+app.use((req, res, next) => {
+  res.locals.session = req.session;
+  next();
+})
 app.use('/',      require('./routes/home'));
 app.use('/users', require('./routes/users'));
 app.use('/features', require('./routes/features'));
 app.use('/change-locale', require('./routes/change-locale'));
 app.get('/login', loginController.index);
 app.post('/login', loginController.post);
+app.get('/logout', loginController.logout);
 app.get('/privado', sessionAuth, privadoController.index);
 
 // catch 404 and forward to error handler
