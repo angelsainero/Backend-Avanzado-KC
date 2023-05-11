@@ -9,6 +9,8 @@ const Agente = require('../../models/Agente');
 router.get('/', async (req, res, next) => {
   try {
 
+    console.log('El _id del usuario que ha hecho la petición es', req.usuarioLogadoDelAPI);
+
     // filtros
     const filterByName = req.query.name;
     const filterByAge = req.query.age;
