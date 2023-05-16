@@ -13,9 +13,23 @@ module.exports = async function() {
       user: testAccount.user, // generated ethereal user
       pass: testAccount.pass, // generated ethereal password
     },
-  }
+  };
 
-  const transport = nodemailer.createTransport(developmentConfig);
+  const productionConfig = {
+    service: process.env.EMAIL_SERVICE_NAME,
+    auth: {
+      user: process.env.EMAIL_SERVICE_USER,
+      pass: process.env.EMAIL_SERVICE_PASS,
+    }
+  };
+
+  console.log('process.env.NODE_ENV', process.env.NODE_ENV);
+  // uso la configuración del entorno en el que me encuentro
+  const activeConfig = process.env.NODE_ENV === 'development' ?
+    developmentConfig :
+    productionConfig;
+
+  const transport = nodemailer.createTransport(activeConfig);
 
   return transport;
 
