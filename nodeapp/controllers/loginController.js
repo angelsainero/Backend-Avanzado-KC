@@ -29,6 +29,9 @@ class LoginController {
       // apuntar en la sesión del usuario, que está autenticado
       req.session.usuarioLogado = usuario._id;
 
+      // enviar un email al usuario
+      await usuario.enviarEmail('Bienvenido', 'Bienvenido a NodeApp');
+
       // --> redirigir a la zona privada
       res.redirect('/privado');
     } catch(err) {
