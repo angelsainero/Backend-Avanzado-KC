@@ -30,7 +30,7 @@ class LoginController {
       req.session.usuarioLogado = usuario._id;
 
       // enviar un email al usuario
-      await usuario.enviarEmail('Bienvenido', 'Bienvenido a NodeApp');
+      usuario.enviarEmail('Bienvenido', 'Bienvenido a NodeApp');
 
       // --> redirigir a la zona privada
       res.redirect('/privado');
