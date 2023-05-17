@@ -11,7 +11,7 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 async function main() {
 
   // conectar al servicio de RabbitMQ
-  const connection = await amqplib.connect('amqps://omoqwkyf:9KNiPjCAVzP-TvB6g3hbOeYXRkAvKiFB@whale.rmq.cloudamqp.com/omoqwkyf');
+  const connection = await amqplib.connect('amqp://guest:guest@localhost');
 
   // crear un canal
   const canal = await connection.createChannel();
@@ -42,6 +42,6 @@ async function main() {
     })
     console.log('enviado mensaje', mensaje);
 
-    await sleep(100);
+    await sleep(1000);
   }
 }
