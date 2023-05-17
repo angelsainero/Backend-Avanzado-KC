@@ -12,10 +12,11 @@ module.exports = (server) => {
       io.emit('mensaje-desde-el-servidor', texto);
     });
 
-    // simular un servicio de noticias
-    setInterval(() => {
-      socket.emit('noticia', 'noticia numero ' + Date.now())
-    }, 2000);
-
   })
+
+  // simular un servicio de noticias
+  setInterval(() => {
+    io.emit('noticia', 'noticia numero ' + Date.now())
+  }, 2000);
+
 }
