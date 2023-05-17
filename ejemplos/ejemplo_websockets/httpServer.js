@@ -3,6 +3,7 @@
 const express = require('express');
 const path = require('path');
 const http = require('http');
+const webSocketsServer = require('./webSocketsServer');
 
 const app = express();
 
@@ -14,4 +15,6 @@ const server = http.createServer(app);
 
 server.listen(3000, () => {
   console.log('Servidor HTTP arrancado en http://localhost:3000');
-})
+});
+
+webSocketsServer(server);
