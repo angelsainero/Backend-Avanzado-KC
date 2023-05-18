@@ -30,6 +30,33 @@ Start in cluster mode:
 npm run cluster
 ```
 
+Start all microservices in development:
+
+```sh
+npx pm2 start ecosystem.config.js --env development
+```
+
+Start all microservices in production:
+
+```sh
+npx pm2 start ecosystem.config.js --env production
+```
+
+Monitoring:
+
+```sh
+npx pm2 list
+npx pm2 logs
+npx pm2 monit
+```
+
+To stop:
+
+```sh
+npx pm2 stop all
+npx pm2 delete all
+```
+
 ## General info
 
 Application created with:
