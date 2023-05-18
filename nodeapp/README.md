@@ -75,6 +75,8 @@ In the console go to MongoDB folder and:
 
 ## API Methods
 
+API documentation can be used from: http://localhost:3000/api-doc/
+
 ### GET /api/agentes
 {
     "results": [

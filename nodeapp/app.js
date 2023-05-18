@@ -11,6 +11,7 @@ const session = require('express-session');
 const sessionAuth = require('./lib/sessionAuthMiddleware');
 const MongoStore = require('connect-mongo');
 const jwtAuthMiddleware = require('./lib/jwtAuthMiddleware');
+const swaggerMiddleware = require('./lib/swaggerMiddleware');
 
 require('./lib/connectMongoose');
 
@@ -34,6 +35,7 @@ const loginController = new LoginController();
 /**
  * Rutas del API
  */
+app.use('/api-doc', swaggerMiddleware);
 app.use('/api/agentes', jwtAuthMiddleware, require('./routes/api/agentes'));
 app.post('/api/login', loginController.postAPI)
 
