@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const emailTransportConfigure = require('../lib/emailTransportConfigure');
 const nodemailer = require('nodemailer');
+const { Requester } = require('cote');
+
+const requester = new Requester({ name: 'nodeapp-email' });
 
 // crear esquema
 const usuarioSchema = mongoose.Schema({
@@ -36,6 +39,20 @@ usuarioSchema.methods.enviarEmail = async function(asunto, cuerpo) {
   console.log(`URL de previsualización: ${nodemailer.getTestMessageUrl(result)}`);
 
   return result;
+}
+
+usuarioSchema.methods.enviarEmailConMicroServicio = async function(asunto, cuerpo) {
+
+  // enviar email
+  const evento = {
+    type: 'enviar-email',
+    from: process.env.EMAIL_SERVICE_FROM,
+    to: this.email,
+    subject: asunto,
+    html: cuerpo,
+  };
+
+  return new Promise(resolve => requester.send(evento, resolve));
 }
 
 // crear el modelo
