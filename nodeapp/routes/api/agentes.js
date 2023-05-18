@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Agente = require('../../models/Agente');
+const upload = require('../../lib/uploadConfigure');
 
 // CRUD: create, read, update, delete
 
@@ -88,10 +89,12 @@ router.put('/:id', async (req, res, next) => {
 
 // POST /api/agentes  (body)
 // Crea un agente
-router.post('/', async (req, res, next) => {
+router.post('/', upload.single('foto'), async (req, res, next) => {
   try {
 
     const agenteData = req.body;
+
+    agenteData.avatar = req.file.filename;
 
     // creamos una instancia de Agente en memoria
     const agente = new Agente(agenteData);

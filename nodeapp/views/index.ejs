@@ -26,6 +26,8 @@
                     <h2><%= __('Agent list') %></h2>
                     <% agentes.forEach(agente => { %>
                       <p>Agente <%= agente.name %> tiene <%= agente.age %> años</p>
+                      <p><%= agente.avatar %></p>
+                      <img src="avatares/<%= agente.avatar %>"></img>
                     <% }) %>
 
                     <h2><%= __('i18n example for plurals') %></h2>
