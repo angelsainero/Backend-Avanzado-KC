@@ -6,7 +6,6 @@
 
 require('dotenv').config();
 
-var app = require('../app');
 var debug = require('debug')('nodeapp:server');
 var http = require('http');
 const cluster = require('cluster');
@@ -33,6 +32,9 @@ if (cluster.isPrimary) {
 
 } else {
   // console.log('Arrancando un clon');
+
+  var app = require('../app');
+
   /**
    * Get port from environment and store in Express.
    */
